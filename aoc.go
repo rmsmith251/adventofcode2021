@@ -5,7 +5,7 @@ import (
 	"os"
 	"log"
 	"bufio"
-	// "strconv"
+	"strconv"
 )
 
 func main() {
@@ -20,20 +20,21 @@ func main() {
 	}()
 	
 	count := 0
-	// prev := 0
+	prev := 0
 	scanner := bufio.NewScanner(file)
+	// i := 0
 	for scanner.Scan() {
 		current := scanner.Text()
-		fmt.Print(current)
-		// cur, err := strconv.Atoi(current)
-		// if err != nil {
-		// 	fmt.Println(err)
-		// 	os.Exit(2)
+		cur, _ := strconv.Atoi(current)
+		// fmt.Println(cur, count, prev)
+		if cur > prev && prev != 0 {
+			count++
+		}
+		prev = cur
+		// i++
+		// if i > 5 {
+		// 	os.Exit(1)
 		// }
-		// if cur > prev && prev != 0 {
-		// 	count++
-		// }
-		// prev := cur
 	}
-	fmt.Print(count)
+	fmt.Println(count)
 }
